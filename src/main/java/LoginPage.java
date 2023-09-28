@@ -12,8 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         private By logoLocator = By.className("header-logo");
         private By errorTextLocator = By.xpath("//div[contains(text(), 'Incorrect username or password.')]");
 
-
-        public LoginPage(WebDriver driver) {
+        private final static String TITLE = "LoginPage";
+        public LoginPage(WebDriver driver,TITLE) {
 
             super(driver);
         }
@@ -24,9 +24,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
         }
 
         public MainPage loginSuccessful(String login, String password) {
+            log.info("loginSuccessful is starting");
             driver.findElement(loginFieldLocator).sendKeys(login);
             driver.findElement(passwordFieldLocator).sendKeys(password);
             driver.findElement(submitLoginButtonLocator).click();
+            log.info("Login is successful");
             return new MainPage(driver);
         }
 
